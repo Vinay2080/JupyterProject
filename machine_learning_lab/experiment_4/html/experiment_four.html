@@ -7721,7 +7721,7 @@ all of MD as it is not optimized for dense, information rich UIs.
     <!-- End of mermaid configuration --></head>
 <body class="jp-Notebook" data-jp-theme-light="true" data-jp-theme-name="JupyterLab Light">
 <main>
-    <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=e6ddbf765c6cc78f">
+    <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=d46babde563bb7f">
         <div class="jp-Cell-inputWrapper" tabindex="0">
             <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
             </div>
@@ -7729,7 +7729,30 @@ all of MD as it is not optimized for dense, information rich UIs.
                 <div class="jp-InputPrompt jp-InputArea-prompt">
                 </div>
                 <div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-                    <h3 id="Load-the-data">Load the data<a class="anchor-link" href="#Load-the-data">¶</a></h3>
+                    <h1 id="Experiment-4:-Decision-Tree-Classification-(Iris-Dataset)">Experiment 4: Decision Tree
+                        Classification (Iris Dataset)<a class="anchor-link"
+                                                        href="#Experiment-4:-Decision-Tree-Classification-(Iris-Dataset)">¶</a>
+                    </h1>
+                    <p>Objective: train and evaluate a <strong>Decision Tree Classifier</strong> to predict the flower
+                        <strong>class/species</strong> using the numeric iris measurements.</p>
+                    <p>Workflow: load → inspect → define <code>X</code>/<code>y</code> → train/test split → train model
+                        → evaluate (accuracy/precision/F1/confusion matrix) → interpret (feature importance + tree plot)
+                        → cross-validation.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=2eb3663a6c13d107">
+        <div class="jp-Cell-inputWrapper" tabindex="0">
+            <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+            </div>
+            <div class="jp-InputArea jp-Cell-inputArea">
+                <div class="jp-InputPrompt jp-InputArea-prompt">
+                </div>
+                <div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+                    <h4 id="Load-the-data">Load the data<a class="anchor-link" href="#Load-the-data">¶</a></h4>
+                    <p>The dataset contains several numeric measurements (features) and one categorical column <code>class</code>
+                        (the label we want to predict).</p>
                 </div>
             </div>
         </div>
@@ -7906,7 +7929,15 @@ all of MD as it is not optimized for dense, information rich UIs.
                 <div class="jp-InputPrompt jp-InputArea-prompt">
                 </div>
                 <div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-                    <p><strong>Plot the data to see the relationship between sepal length and sepal width</strong></p>
+                    <h4 id="Quick-overview-(summary-&amp;-missing-values)">Quick overview (summary &amp; missing values)<a
+                            class="anchor-link" href="#Quick-overview-(summary-&amp;-missing-values)">¶</a></h4>
+                    <p>This step helps us understand:</p>
+                    <ul>
+                        <li>basic statistics (min/max/mean/std)</li>
+                        <li>whether there are missing (null) values</li>
+                    </ul>
+                    <p>If there are missing values, we normally handle them before training (drop or impute). For the
+                        standard iris dataset, nulls are usually 0.</p>
                 </div>
             </div>
         </div>
@@ -8068,7 +8099,19 @@ dtype: int64</pre>
                 <div class="jp-InputPrompt jp-InputArea-prompt">
                 </div>
                 <div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-                    <p><strong>Creating dependent and Independent variables</strong></p>
+                    <h4 id="Create-independent-(X)-and-dependent-(y)-variables">Create independent (X) and dependent (y)
+                        variables<a class="anchor-link" href="#Create-independent-(X)-and-dependent-(y)-variables">¶</a>
+                    </h4>
+                    <p>In supervised learning:</p>
+                    <ul>
+                        <li><strong>X (independent variables / features)</strong>: the input measurements used for
+                            prediction
+                        </li>
+                        <li><strong>y (dependent variable / target/label)</strong>: the output we want the model to
+                            predict
+                        </li>
+                    </ul>
+                    <p>Here, <code>class</code> is the label (species). All other numeric columns are features.</p>
                 </div>
             </div>
         </div>
@@ -8119,9 +8162,15 @@ dtype: int64</pre>
                 <div class="jp-InputPrompt jp-InputArea-prompt">
                 </div>
                 <div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-                    <h5 id="check-the-shape-of-X-and-y">check the shape of X and y<a class="anchor-link"
-                                                                                     href="#check-the-shape-of-X-and-y">¶</a>
-                    </h5>
+                    <h4 id="Check-the-shape-of-X-and-y">Check the shape of X and y<a class="anchor-link"
+                                                                                     href="#Check-the-shape-of-X-and-y">¶</a>
+                    </h4>
+                    <p>We check shapes to confirm:</p>
+                    <ul>
+                        <li><code>X</code> has shape <code>(n_samples, n_features)</code></li>
+                        <li><code>y</code> has shape <code>(n_samples,)</code></li>
+                    </ul>
+                    <p>Both must have the same number of rows (<code>n_samples</code>).</p>
                 </div>
             </div>
         </div>
@@ -8194,7 +8243,16 @@ dtype: int64</pre>
                 <div class="jp-InputPrompt jp-InputArea-prompt">
                 </div>
                 <div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-                    <p><strong>Split the data into training and testing sets</strong></p>
+                    <h4 id="Split-into-training-and-testing-sets">Split into training and testing sets<a
+                            class="anchor-link" href="#Split-into-training-and-testing-sets">¶</a></h4>
+                    <p>We split the dataset so we can evaluate our model on <strong>unseen</strong> data.</p>
+                    <ul>
+                        <li>The model <strong>fits</strong> (learns) patterns from <code>X_train, y_train</code>.</li>
+                        <li>We then <strong>test</strong> it using <code>X_test</code> and compare predictions with
+                            <code>y_test</code>.
+                        </li>
+                    </ul>
+                    <p>This prevents the common mistake of evaluating on the same data used for training.</p>
                 </div>
             </div>
         </div>
@@ -8368,7 +8426,11 @@ dtype: int64</pre>
                 <div class="jp-InputPrompt jp-InputArea-prompt">
                 </div>
                 <div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-                    <p><strong>Train the decision tree model using the training data</strong></p>
+                    <h4 id="Train-the-Decision-Tree-model">Train the Decision Tree model<a class="anchor-link"
+                                                                                           href="#Train-the-Decision-Tree-model">¶</a>
+                    </h4>
+                    <p>A Decision Tree learns a set of if/else rules (splits) based on feature values.</p>
+                    <p>We use <code>criterion='entropy'</code> (information gain) to decide the best splits.</p>
                 </div>
             </div>
         </div>
@@ -9513,6 +9575,32 @@ clickable and can be expanded/collapsed.
             </div>
         </div>
     </div>
+    <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=6afd2195b9216ad0">
+        <div class="jp-Cell-inputWrapper" tabindex="0">
+            <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+            </div>
+            <div class="jp-InputArea jp-Cell-inputArea">
+                <div class="jp-InputPrompt jp-InputArea-prompt">
+                </div>
+                <div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+                    <h4 id="Understanding-the-evaluation-metrics">Understanding the evaluation metrics<a
+                            class="anchor-link" href="#Understanding-the-evaluation-metrics">¶</a></h4>
+                    <ul>
+                        <li><strong>Accuracy</strong>: overall percentage of correct predictions.</li>
+                        <li><strong>Confusion matrix</strong>: shows correct vs incorrect predictions for each class.
+                        </li>
+                        <li><strong>Precision (weighted)</strong> and <strong>F1-score (weighted)</strong>: useful for
+                            multiclass problems.
+                        </li>
+                    </ul>
+                    <p>Why <code>average='weighted'</code>?
+                        Because we have multiple classes. Weighted averaging computes the metric for each class and then
+                        averages using class support (how many samples per class). This gives a single score that
+                        accounts for class frequency.</p>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=5fd7bc0f61eeb155">
         <div class="jp-Cell-inputWrapper" tabindex="0">
             <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
@@ -9539,6 +9627,23 @@ clickable and can be expanded/collapsed.
                          data-mime-type="text/plain" tabindex="0">
                         <pre>array([0.0156062 , 0.        , 0.07501716, 0.90937664])</pre>
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=d5a4adb8fa71ee3">
+        <div class="jp-Cell-inputWrapper" tabindex="0">
+            <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+            </div>
+            <div class="jp-InputArea jp-Cell-inputArea">
+                <div class="jp-InputPrompt jp-InputArea-prompt">
+                </div>
+                <div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+                    <h4 id="Feature-importance">Feature importance<a class="anchor-link"
+                                                                     href="#Feature-importance">¶</a></h4>
+                    <p><code>feature_importances_</code> tells us which features were most useful for splits in the
+                        tree.</p>
+                    <p>Higher importance means the model relied more on that feature to make decisions.</p>
                 </div>
             </div>
         </div>
@@ -9586,7 +9691,7 @@ Actual:  Iris-virginica
             </div>
         </div>
     </div>
-    <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=94a2a0ac481cdeb2">
+    <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=4740355e265914f5">
         <div class="jp-Cell-inputWrapper" tabindex="0">
             <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
             </div>
@@ -9594,7 +9699,38 @@ Actual:  Iris-virginica
                 <div class="jp-InputPrompt jp-InputArea-prompt">
                 </div>
                 <div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-                    <h4 id="plot-the-tree">plot the tree<a class="anchor-link" href="#plot-the-tree">¶</a></h4>
+                    <h4 id="Single-sample-verification">Single-sample verification<a class="anchor-link"
+                                                                                     href="#Single-sample-verification">¶</a>
+                    </h4>
+                    <p>This is a quick sanity check on one test example:</p>
+                    <ul>
+                        <li>take one row from <code>X_test</code></li>
+                        <li>predict its class</li>
+                        <li>compare with the true label from <code>y_test</code></li>
+                    </ul>
+                    <p>If it predicts incorrectly, it does not mean the model is broken—just that this particular sample
+                        was misclassified.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=bbd3fffd672f52d1">
+        <div class="jp-Cell-inputWrapper" tabindex="0">
+            <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+            </div>
+            <div class="jp-InputArea jp-Cell-inputArea">
+                <div class="jp-InputPrompt jp-InputArea-prompt">
+                </div>
+                <div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+                    <h4 id="Plot-the-tree">Plot the tree<a class="anchor-link" href="#Plot-the-tree">¶</a></h4>
+                    <p>Plotting the tree helps us interpret the learned rules:</p>
+                    <ul>
+                        <li>which feature is used at each split</li>
+                        <li>thresholds used by the model</li>
+                        <li>class predicted at each leaf</li>
+                    </ul>
+                    <p>Large trees can be hard to read; in practice we often restrict tree depth or use ensembles
+                        (Random Forest) for better generalization.</p>
                 </div>
             </div>
         </div>
@@ -9667,7 +9803,13 @@ Actual:  Iris-virginica
                 <div class="jp-InputPrompt jp-InputArea-prompt">
                 </div>
                 <div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-                    <h4 id="cross-validation">cross validation<a class="anchor-link" href="#cross-validation">¶</a></h4>
+                    <h4 id="Cross-validation">Cross validation<a class="anchor-link" href="#Cross-validation">¶</a></h4>
+                    <p>Cross-validation (CV) evaluates the model multiple times on different splits.</p>
+                    <p>Why use CV?</p>
+                    <ul>
+                        <li>train/test split can be “lucky” or “unlucky” depending on the random split</li>
+                        <li>CV gives a more stable estimate of expected performance</li>
+                    </ul>
                 </div>
             </div>
         </div>
